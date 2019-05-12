@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastro de pessoa</h2>
+<div style="padding: 20px 20px 20px 20px">
+    <form>
+        <div class="col-lg-6 form-group">
+            <label for="nomePessoa">Nome</label>
+            <input type="text" class="form-control" id="nomePessoa" placeholder="Nome da pessoa">
+        </div>
+        <div class="col-lg-6 form-group">
+            <label for="rgPessoa">RG</label>
+            <input type="text" maxlength="15" class="form-control" id="rgPessoa" placeholder="RG da pessoa">
+        </div>
+        <div class="col-lg-6 form-group">
+            <label for="emailPessoa">Email</label>
+            <input type="email" onblur="validarEmail(this.value)" class="form-control" id="emailPessoa" placeholder="Email da pessoa">
+        </div>
+        <div class="col-lg-6 form-group">
+            <label for="cargoPessoa">Cargo</label>
+            <select class="form-control" id="cargoPessoa">
+                <option selected>Selecione</option>
+                <option>1</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function validateEmail(email) {
+        var reg = /^\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        if (reg.test(email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script> 
