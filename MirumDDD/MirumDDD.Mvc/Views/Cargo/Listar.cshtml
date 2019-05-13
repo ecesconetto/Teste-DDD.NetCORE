@@ -36,14 +36,29 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SalarioBase)
+                    R$ @Html.DisplayFor(modelItem => item.SalarioBase)
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Update", "Cargo", new { id = item.Id }) |
                     @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                    @Html.ActionLink("Excluir", "Delete", "Cargo", new { id = item.Id })
+                    <input type="button" value="Excluir" onclick="excluirCargo(@item.Id)" />
+                    @*@Html.ActionLink("Excluir", "Delete", "Cargo", new { id = item.Id })*@
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    function excluirCargo(itemId) {
+            $.ajax({
+                contentType: "application/json",
+                url: '@(Url.Action("Delete", "Cargo"))',
+                cache: false,
+                data: { id: itemId },
+                success: function (response) {
+                    // ...
+                }
+            });
+    }
+</script>

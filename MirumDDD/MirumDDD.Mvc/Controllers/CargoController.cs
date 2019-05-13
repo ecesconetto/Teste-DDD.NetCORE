@@ -48,7 +48,6 @@ namespace MirumDDD.Mvc.Controllers
             return View(retorno);
         }
 
-        [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             //TODO: enviar só o id?
