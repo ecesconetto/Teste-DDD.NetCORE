@@ -1,8 +1,60 @@
-﻿
+﻿@model IEnumerable<MirumDDD.Domain.ViewModels.PessoaViewModel>
+
 @{
     ViewData["Title"] = "Listar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Listar</h2>
+<h2>Listar pessoas</h2>
 
+<p>
+    <a asp-action="Cadastrar">Cadastrar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CargoId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CargoId)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Update", "Pessoa", new { id = item.Id }) |
+                @*@Html.ActionLink("Details", "Details", "Pessoa", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Excluir", "Delete", "Pessoa", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
