@@ -8,8 +8,8 @@ namespace MirumDDD.Service.Interfaces
     {
         Task<List<CargoViewModel>> Get();
         Task<CargoViewModel> Get(int id);
-        Task<int> Post(CargoViewModel model);
-        Task<bool> Delete(int id);
+        Task<CargoViewModel> Post(CargoViewModel model);
+        Task<bool> Delete(CargoViewModel model);
         Task<bool> Update(CargoViewModel model);
     }
 }

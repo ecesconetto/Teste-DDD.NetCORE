@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MirumDDD.Domain.ViewModels;
 using MirumDDD.Service.Interfaces;
 
 namespace MirumDDD.Mvc.Controllers
@@ -24,9 +25,35 @@ namespace MirumDDD.Mvc.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Cadastrar()
+        public async Task<IActionResult> Cadastrar() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(CargoViewModel model)
         {
-            return View();
+            var retorno = await cargoService.Post(model);
+            return View(retorno);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var retorno = await cargoService.Get(id);
+            return View(retorno);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(CargoViewModel model)
+        {
+            var retorno = await cargoService.Update(model);
+            return View(retorno);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Delete(CargoViewModel model)
+        {
+            //TODO: enviar só o id?
+            var retorno = await cargoService.Update(model);
+            return View(retorno);
         }
     }
 }

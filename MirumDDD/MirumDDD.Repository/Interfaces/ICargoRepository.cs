@@ -9,7 +9,7 @@ namespace MirumDDD.Repository.Interfaces
         Task<List<CargoModel>> Get();
         Task<CargoModel> Get(int id);
         Task<int> Post(CargoModel model);
-        Task<bool> Delete(int id);
+        Task<bool> Delete(CargoModel model);
         Task<bool> Update(CargoModel model);
     }
 }
