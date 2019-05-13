@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MirumDDD.CrossCutting\MirumDDD.CrossCutting.csproj" />
     <ProjectReference Include="..\MirumDDD.Domain\MirumDDD.Domain.csproj" />
+    <ProjectReference Include="..\MirumDDD.Infra.Core\MirumDDD.Infra.Core.csproj" />
     <ProjectReference Include="..\MirumDDD.IoC\MirumDDD.IoC.csproj" />
   </ItemGroup>
 

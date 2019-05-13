@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MirumDDD.CrossCutting;
 using MirumDDD.Domain.Automapper;
 using MirumDDD.IoC;
+using Microsoft.EntityFrameworkCore;
+using MirumDDD.Infra.Core.Models;
 
 namespace MirumDDD
 {
@@ -34,6 +36,8 @@ namespace MirumDDD
             services.AddAutoMapper();
             AutomapperConfiguration.RegisterMappings();
             NativeInjectorBootStrapper.RegisterServices(services);
+
+            services.AddDbContext<MirumContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MirumDDDConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

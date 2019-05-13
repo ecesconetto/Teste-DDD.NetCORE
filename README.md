@@ -12,8 +12,7 @@ CREATE TABLE Cargo
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
 	Nome VARCHAR(255),
-	SalarioBase decimal(14,2),
-	Email VARCHAR(255)
+	SalarioBase decimal(10,2)
 )
 GO
 

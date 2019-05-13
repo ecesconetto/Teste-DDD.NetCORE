@@ -1,6 +1,7 @@
 ﻿using System.Data.Common;
 using System.Data.SqlClient;
 using MirumDDD.CrossCutting;
+using MirumDDD.Infra.Core.Models;
 using MirumDDD.Repository.Interfaces;
 
 namespace MirumDDD.Repository.Repositories

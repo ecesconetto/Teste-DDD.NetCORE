@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MirumDDD.Repository.Interfaces;
 using MirumDDD.Repository.Repositories;
 using Microsoft.AspNetCore.Http;
+using MirumDDD.Service.Services;
+using MirumDDD.Service.Interfaces;
 
 namespace MirumDDD.IoC
 {
@@ -16,6 +18,12 @@ namespace MirumDDD.IoC
         {
             //Base
             services.AddTransient<IBaseRepository, BaseRepository>();
+
+            services.AddTransient<IPessoaService, PessoaService>();
+            services.AddTransient<IPessoaRepository, PessoaRepository>();
+
+            services.AddTransient<ICargoService, CargoService>();
+            services.AddTransient<ICargoRepository, CargoRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton(Mapper.Configuration);

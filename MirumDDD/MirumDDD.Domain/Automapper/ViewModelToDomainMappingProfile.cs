@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MirumDDD.Domain.Models;
+using MirumDDD.Domain.ViewModels;
 
 namespace MirumDDD.Domain.Automapper
 {
@@ -6,8 +8,8 @@ namespace MirumDDD.Domain.Automapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            //CreateMap<OwnerViewModel, Owner>();
-            //CreateMap<RepositoryGitHubViewModel, RepositoryGitHub>();
+            CreateMap<PessoaViewModel, PessoaModel>();
+            CreateMap<CargoViewModel, CargoModel>();
         }
     }
 }
