@@ -48,12 +48,12 @@ namespace MirumDDD.Mvc.Controllers
             return View(retorno);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Delete(CargoViewModel model)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
             //TODO: enviar só o id?
-            var retorno = await cargoService.Update(model);
-            return View(retorno);
+            //var retorno = await cargoService.Update(model);
+            return View();
         }
     }
 }
