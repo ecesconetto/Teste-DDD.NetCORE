@@ -21,7 +21,8 @@ namespace MirumDDD.Service.Services
 
         public async Task<bool> Delete(int id)
         {
-            return await pessoaRepository.Delete(id);
+            var entity = await pessoaRepository.GetEntity(id);
+            return await pessoaRepository.Delete(entity);
         }
 
         public async Task<List<PessoaViewModel>> Get()
@@ -40,6 +41,14 @@ namespace MirumDDD.Service.Services
             return viewModel;
         }
 
+        public async Task<List<PessoaViewModel>> GetPessoaByCargoId(int cargoId)
+        {
+            var model = await pessoaRepository.GetPessoaByCargoId(cargoId);
+            var viewModel = mapper.Map<List<PessoaViewModel>>(model);
+
+            return viewModel;
+        }
+
         public async Task<int> Post(PessoaViewModel model)
         {
             var entity = mapper.Map<PessoaModel>(model);
@@ -48,7 +57,12 @@ namespace MirumDDD.Service.Services
 
         public async Task<bool> Update(PessoaViewModel model)
         {
-            var entity = mapper.Map<PessoaModel>(model);
+            var entity = await pessoaRepository.GetEntity(model.Id);
+            entity.CargoId = model.CargoId;
+            entity.Email = model.Email;
+            entity.Nome = model.Nome;
+            entity.Rg = model.RG;
+
             return await pessoaRepository.Update(entity);
         }
     }

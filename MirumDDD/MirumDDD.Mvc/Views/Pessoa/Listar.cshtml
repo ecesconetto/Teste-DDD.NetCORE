@@ -10,6 +10,21 @@
 <p>
     <a asp-action="Cadastrar">Cadastrar</a>
 </p>
+
+<form asp-controller="Pessoa" asp-action="Listar" method="get">
+    <div class="form-group">
+        @*<label class="control-label"></label>
+            <input name="cargoId" type="text" id="cargoId" class="form-control" />*@
+        <label for="slcCargo" class="control-label">Cargo</label>
+        <select name="cargoId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Cargos,"Id","Nome", ViewBag.Selected))">
+            <option>Selecione</option>
+        </select>
+        <input type="submit" value="Filtrar" />
+    </div>
+
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,35 +41,57 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CargoId)
+                Cargo
+            </th>
+            <th>
+                Salário
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RG)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CargoId)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Update", "Pessoa", new { id = item.Id }) |
-                @*@Html.ActionLink("Details", "Details", "Pessoa", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Excluir", "Delete", "Pessoa", new { id = item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo.SalarioBase)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Update", "Pessoa", new { id = item.Id }) |
+                    <input type="button" value="Excluir" onclick="excluirPessoa(@item.Id)" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<script>
+    function excluirPessoa(itemId) {
+            $.ajax({
+                contentType: "application/json",
+                url: '@(Url.Action("Delete", "Pessoa"))',
+                cache: false,
+                data: { id: itemId },
+                success: function (response) {
+                    if (response) {
+                        window.location.reload(true);
+                    }
+                }
+            });
+    }
+</script>

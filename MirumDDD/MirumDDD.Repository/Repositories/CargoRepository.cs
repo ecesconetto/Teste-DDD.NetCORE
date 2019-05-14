@@ -11,13 +11,12 @@ namespace MirumDDD.Repository.Repositories
 {
     public class CargoRepository : ICargoRepository
     {
-        public async Task<bool> Delete(CargoModel model)
+        public async Task<bool> Delete(Cargo model)
         {
             using (var context = new MirumContext())
             {
-                //TODO: resgatar o cargo pelo id antes de alterá-lo no Service
-                var cargo = context.Cargo.Where(x => x.Id == model.Id).FirstOrDefault();
-                var retorno = context.Cargo.Remove(cargo);
+                var retorno = context.Cargo.Remove(model);
+                context.Entry(model).State = EntityState.Deleted;
                 context.SaveChanges();
                 return true;
             }
@@ -41,6 +40,15 @@ namespace MirumDDD.Repository.Repositories
             }
         }
 
+        public async Task<Cargo> GetEntity(int id)
+        {
+            using (var context = new MirumContext())
+            {
+                var retorno = context.Cargo.Where(x => x.Id == id).FirstOrDefault();
+                return retorno;
+            }
+        }
+
         public async Task<int> Post(CargoModel model)
         {
             using (var context = new MirumContext())
@@ -51,14 +59,12 @@ namespace MirumDDD.Repository.Repositories
             }
         }
 
-        public async Task<bool> Update(CargoModel model)
+        public async Task<bool> Update(Cargo model)
         {
             using (var context = new MirumContext())
             {
-                //TODO: resgatar o cargo pelo id antes de alterá-lo no Service
-                var cargo = context.Cargo.Where(x => x.Id == model.Id).FirstOrDefault();
-                var retorno = context.Cargo.Update(cargo);
-                context.Entry(cargo).State = EntityState.Modified;
+                var retorno = context.Cargo.Update(model);
+                context.Entry(model).State = EntityState.Modified;
                 context.SaveChanges();
                 return retorno.Entity.Id > 0;
             }

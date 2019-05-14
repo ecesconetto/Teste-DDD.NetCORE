@@ -30,8 +30,11 @@ namespace MirumDDD.Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(CargoViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             var retorno = await cargoService.Post(model);
-            return View(retorno);
+            return RedirectToAction("Listar");
         }
 
         [HttpGet]
@@ -41,18 +44,20 @@ namespace MirumDDD.Mvc.Controllers
             return View(retorno);
         }
 
-        [HttpPut]
+        [HttpPost]
         public async Task<IActionResult> Update(CargoViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             var retorno = await cargoService.Update(model);
-            return View(retorno);
+            return RedirectToAction("Listar");
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
-            //TODO: enviar só o id?
-            //var retorno = await cargoService.Update(model);
-            return View();
+            var retorno = await cargoService.Delete(id);
+            return Json(true);
         }
     }
 }

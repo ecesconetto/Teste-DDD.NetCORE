@@ -57,7 +57,9 @@
                 cache: false,
                 data: { id: itemId },
                 success: function (response) {
-                    // ...
+                    if (response) {
+                        window.location.reload(true);
+                    }
                 }
             });
     }

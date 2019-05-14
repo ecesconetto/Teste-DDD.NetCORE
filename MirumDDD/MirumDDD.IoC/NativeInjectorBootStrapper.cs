@@ -16,9 +16,6 @@ namespace MirumDDD.IoC
         /// <param name="services"></param>
         public static void RegisterServices(IServiceCollection services)
         {
-            //Base
-            services.AddTransient<IBaseRepository, BaseRepository>();
-
             services.AddTransient<IPessoaService, PessoaService>();
             services.AddTransient<IPessoaRepository, PessoaRepository>();
 

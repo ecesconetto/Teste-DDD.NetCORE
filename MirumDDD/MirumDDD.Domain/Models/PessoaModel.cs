@@ -7,5 +7,6 @@
         public string RG { get; set; }
         public string Email { get; set; }
         public int CargoId { get; set; }
+        public CargoModel Cargo { get; set; }
     }
 }

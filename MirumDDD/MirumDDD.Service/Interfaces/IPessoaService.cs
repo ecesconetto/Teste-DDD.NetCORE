@@ -11,5 +11,6 @@ namespace MirumDDD.Service.Interfaces
         Task<int> Post(PessoaViewModel model);
         Task<bool> Delete(int id);
         Task<bool> Update(PessoaViewModel model);
+        Task<List<PessoaViewModel>> GetPessoaByCargoId(int cargoId);
     }
 }

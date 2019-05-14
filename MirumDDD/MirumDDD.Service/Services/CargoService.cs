@@ -19,10 +19,9 @@ namespace MirumDDD.Service.Services
             this.cargoRepository = cargoRepository;
         }
 
-        public async Task<bool> Delete(CargoViewModel model)
+        public async Task<bool> Delete(int id)
         {
-            //TODO: criar instancia do context e enviar para o DeleteRepository
-            var entity = mapper.Map<CargoModel>(model);
+            var entity = await cargoRepository.GetEntity(id);
             return await cargoRepository.Delete(entity);
         }
 
@@ -52,8 +51,10 @@ namespace MirumDDD.Service.Services
 
         public async Task<bool> Update(CargoViewModel model)
         {
-            //TODO: criar instancia do context e enviar para o UpdateRepository
-            var entity = mapper.Map<CargoModel>(model);
+            var entity = await cargoRepository.GetEntity(model.Id);
+            entity.Nome = model.Nome;
+            entity.SalarioBase = model.SalarioBase;
+
             return await cargoRepository.Update(entity);
         }
     }

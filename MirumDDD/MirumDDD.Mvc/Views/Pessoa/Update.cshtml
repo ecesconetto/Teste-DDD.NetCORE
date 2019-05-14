@@ -29,11 +29,12 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <!--TODO: combo box cargos-->
             <div class="form-group">
-                <label asp-for="CargoId" class="control-label"></label>
-                <input asp-for="CargoId" class="form-control" />
-                <span asp-validation-for="CargoId" class="text-danger"></span>
+                <label for="slcCargo" class="control-label">Cargo</label>
+                <select class="form-control" asp-for="CargoId"
+                        asp-items="@(new SelectList(ViewBag.Cargos,"Id","Nome"))">
+                    <option>Selecione</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Editar" class="btn btn-default" />
