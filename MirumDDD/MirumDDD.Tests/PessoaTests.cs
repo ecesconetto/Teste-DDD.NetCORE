@@ -50,6 +50,49 @@ namespace MirumDDD.Tests
         }
 
         [Fact]
+        public async Task Should_Not_Update_Pessoa()
+        {
+            pessoaService.Setup(x => x.Update(new PessoaViewModel()
+            {
+                Id = It.IsAny<int>(),
+                Email = null,
+                Nome = null,
+                RG = null,
+                CargoId = It.IsAny<int>()
+            }));
+
+            using (var server = new TestServer(_webHostBuilder))
+            using (var client = server.CreateClient())
+            {
+                var controller = new PessoaController(pessoaService.Object, cargoService.Object);
+
+                controller.ModelState.AddModelError("Id", "Required");
+
+                var retorno = await controller.Update(new PessoaViewModel()
+                {
+                    Id = It.IsAny<int>(),
+                    Email = null,
+                    Nome = null,
+                    RG = null,
+                    CargoId = It.IsAny<int>()
+                });
+
+                var retornoOk = retorno as ViewResult;
+
+                Assert.NotNull(retornoOk);
+                Assert.False(retornoOk.ViewData.ModelState.IsValid);
+                pessoaService.Verify(x => x.Update(new PessoaViewModel()
+                {
+                    Id = It.IsAny<int>(),
+                    Email = null,
+                    Nome = null,
+                    RG = null,
+                    CargoId = It.IsAny<int>()
+                }), Times.Once);
+            }
+        }
+
+        [Fact]
         public async Task Should_Update_Pessoa_Get()
         {
             pessoaService.Setup(x => x.Get(It.IsAny<int>()))
