@@ -1,4 +1,4 @@
-# MirumDDD
+# DDD
 Sistema de testes usando a arquitetura DDD em .Net CORE 2.1, testes unitários com Moq e xUnit.
 
 Mirum DB:
