@@ -1,5 +1,5 @@
 # MirumDDD
-Teste para a empresa Mirum usando a arquitetura DDD em .Net CORE 2.1, testes unitários com Moq e xUnit.
+Sistema de testes usando a arquitetura DDD em .Net CORE 2.1, testes unitários com Moq e xUnit.
 
 Mirum DB:
 CREATE DATABASE Mirum
