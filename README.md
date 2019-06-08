@@ -1,5 +1,5 @@
-# DDD
-Sistema de testes usando a arquitetura DDD em .Net CORE 2.1, testes unitários com Moq e xUnit.
+#  MVC DDD
+Sistema de testes usando a arquitetura DDD e MVC em .Net CORE 2.1, testes unitários com Moq e xUnit.
 
 Mirum DB:
 CREATE DATABASE Mirum
